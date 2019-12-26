@@ -1,0 +1,25 @@
+{
+  "name": "react-project-with-umi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "umi": "^2.12.7",
+    "umi-plugin-react": "^1.14.10"
+  },
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zymfe/react-project-with-umi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zymfe/react-project-with-umi/issues"
+  },
+  "homepage": "https://github.com/zymfe/react-project-with-umi#readme"
+}
