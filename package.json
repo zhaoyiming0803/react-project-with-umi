@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
+    "antd": "^3.26.4",
     "umi": "^2.12.7",
     "umi-plugin-react": "^1.14.10"
   },
