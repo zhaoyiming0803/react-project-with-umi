@@ -8,10 +8,10 @@ export default {
         component: './Index'
       },
       {
-        path: '/business',
+        path: '/coupon',
         routes: [
-          { path: '/business/list', component: './business/List' },
-          { path: '/business/add', component: './business/Add' },
+          { path: '/coupon/list', component: './coupon/List' },
+          { path: '/coupon/add', component: './coupon/Add' },
         ]
       }
     ]
