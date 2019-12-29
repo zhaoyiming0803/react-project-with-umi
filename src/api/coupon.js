@@ -17,3 +17,15 @@ export const getCouponClassify = () => {
     method: 'get'
   })
 }
+
+export const addCoupon = (data) => {
+  console.log('coupon data: ', data)
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        code: 0,
+        message: '添加成功'
+      })
+    }, 200)
+  })
+}

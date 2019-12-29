@@ -1,4 +1,4 @@
-import { getCouponList, getCouponClassify } from "../api/coupon"
+import { getCouponList, getCouponClassify, addCoupon } from "../api/coupon"
 
 export default {
   namespace: 'coupon',
@@ -19,6 +19,13 @@ export default {
     *getCouponClassify ({ payload }, { call, put }) {
       const classify = yield call(getCouponClassify)
       yield put({ type: 'resetClassify', payload: classify })
+    },
+
+    *addCoupon ({ payload }, { call, put }) {
+      const result = yield call(() => {
+        return addCoupon(payload)
+      })
+      console.log(result)
     }
   },
 

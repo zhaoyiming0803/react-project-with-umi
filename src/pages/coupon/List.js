@@ -6,12 +6,10 @@ const { Option } = Select
 const namespace = 'coupon'
 
 const mapStateToProps = state => {
-  const { couponList, classify, page, classifyId } = state[ namespace ]
+  const { couponList, classify } = state[ namespace ]
   return {
     couponList,
-    classify,
-    page,
-    classifyId
+    classify
   }
 }
 
