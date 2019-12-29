@@ -1,3 +1,5 @@
+const webpackProdConfig = require('../build/prod.config')
+
 export default {
   routes: [ {
     path: '/',
@@ -19,9 +21,17 @@ export default {
   plugins: [
     [ 'umi-plugin-react', {
       antd: true,
-      dva: true
+      dva: true,
+      dynamicImport: true
     } ]
   ],
   publicPath: '/react-project-with-umi/',
-  base: '/react-project-with-umi/'
+  base: '/react-project-with-umi/',
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM",
+    "react-router": "ReactRouter",
+    "react-redux": "ReactRedux"
+  },
+  chainWebpack: ['master', 'test'].includes(process.env.UMI_ENV) ? webpackProdConfig : undefined
 };
