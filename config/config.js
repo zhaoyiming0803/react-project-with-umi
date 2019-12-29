@@ -22,5 +22,6 @@ export default {
       dva: true
     } ]
   ],
-  publicPath: '/react-project-with-umi/'
+  publicPath: '/react-project-with-umi/',
+  base: '/react-project-with-umi/'
 };
