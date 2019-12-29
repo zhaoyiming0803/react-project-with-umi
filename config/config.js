@@ -21,5 +21,6 @@ export default {
       antd: true,
       dva: true
     } ]
-  ]
+  ],
+  publicPath: '/react-project-with-umi/'
 };
