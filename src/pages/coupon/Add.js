@@ -56,9 +56,11 @@ class CouponForm extends React.Component {
               rules: [ { type: 'url' } ],
             })(<Input />)}
           </FormItem>
+          <FormItem style={{textAlign: 'center'}}>
+            <Button style={{marginRight: '10px'}} onClick={() => this.resetForm()}>重置</Button>
+            <Button type="primary" onClick={() => this.submit()}>提交</Button>
+          </FormItem>
         </Form>
-        <Button onClick={() => this.resetForm()}>重置</Button>
-        <Button type="primary" onClick={() => this.submit()}>提交</Button>
       </div>
     )
   }
