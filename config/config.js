@@ -1,7 +1,12 @@
 const webpackProdConfig = require('../build/prod.config')
 
 export default {
-  routes: [ {
+  routes: [
+    {
+      path: '/login',
+      component: './Login/Login'
+    },
+    {
     path: '/',
     component: './App', // 相对于 page 目录的相对路径
     routes: [
