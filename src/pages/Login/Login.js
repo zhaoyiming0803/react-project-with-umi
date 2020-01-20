@@ -16,17 +16,18 @@ class LoginForm extends React.Component {
 
   onSubmit (e) {
     e.preventDefault()
-    this.props.form.validateFieldsAndScroll((err, formData) => {
+    this.props.form.validateFieldsAndScroll(async (err, formData) => {
       if (err) {
         return console.log(err)
       }
-      this.props.dispatch({
+      await this.props.dispatch({
         type: `${ namespace }/login`,
         payload: {
           ...formData,
           accountType: this.state.accountType
         }
       })
+      this.props.history.replace('/')
     })
   }
 

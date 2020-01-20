@@ -1,38 +1,50 @@
 import React from 'react'
-import Link from 'umi/link'
-import { Layout, Menu, Icon } from 'antd'
+import { Layout, message } from 'antd'
+import { systemName } from '../../config/system.config'
+import MenuLayout from './Layout/MenuLayout'
+import AuthLayout from './Layout/AuthLayout'
+import { getUserInfo } from '@/utils'
+import { connect } from 'dva'
 
+const namespace = 'auth'
+const mapStateToProps = state => ({
+  userInfo: state[ namespace ].userInfo
+})
 const { Header, Footer, Sider, Content } = Layout
-const SubMenu = Menu.SubMenu
 
+@connect(mapStateToProps)
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.validateIdetify()
+  }
+
+  validateIdetify () {
+    const { Uid, Token } = getUserInfo()
+    if (!Uid || !Token) {
+      return this.props.history.replace('/login')
+    }
+    this.props.dispatch({
+      type: `${ namespace }/getUserInfo`,
+      payload: Token
+    })
+  }
+
   render () {
+    document.title = systemName
     return (
-      // DOM 树结构，只能有一个 root 节点
       <Layout>
         <Sider width={256} style={{ minHeight: '100vh' }}>
-          <div style={{ height: '32px', background: 'rgba(255,255,255,.2)', margin: '16px' }} />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={[ '1' ]}>
-            <Menu.Item key="1">
-              <Link to="/">
-                <Icon type="pie-chart" />
-                <span>Index</span>
-              </Link>
-            </Menu.Item>
-            <SubMenu
-              key="sub1"
-              title={<span><Icon type="dashboard" /><span>优惠券管理</span></span>}
-            >
-              <Menu.Item key="2"><Link to="/coupon/list">优惠券列表</Link></Menu.Item>
-              <Menu.Item key="3"><Link to="/coupon/add">添加优惠券</Link></Menu.Item>
-            </SubMenu>
-          </Menu>
+          <div style={{ height: '32px', color: '#fff', textAlign: 'center', margin: '16px' }}>
+            {systemName}
+          </div>
+          <MenuLayout routes={this.props.route.routes} defaultSelectedKeys={this.props.location.pathname}></MenuLayout>
         </Sider>
-        <Layout >
+        <Layout>
           <Header style={{ background: '#fff', textAlign: 'center', padding: 0 }}>Header</Header>
           <Content style={{ margin: '24px 16px 0' }}>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              {this.props.children}
+              <AuthLayout access={this.props.userInfo.access} pathname={this.props.location.pathname}>{this.props.children}</AuthLayout>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Footer</Footer>

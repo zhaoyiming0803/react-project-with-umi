@@ -7,3 +7,11 @@ export const login = data => {
     method: 'post'
   })
 }
+
+export const getUserInfoUrl = token => {
+  return ajax.request({
+    url: '/user/info',
+    params: { token },
+    method: 'get'
+  })
+}

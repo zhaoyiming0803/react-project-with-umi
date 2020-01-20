@@ -1,6 +1,6 @@
-import React from 'react'
 import { Button, Form, Input, Modal } from 'antd'
 import { connect } from 'dva'
+import AuthLayout from '@/pages/Layout/AuthLayout'
 
 const namespace = 'coupon'
 

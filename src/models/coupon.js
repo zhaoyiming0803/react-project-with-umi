@@ -1,4 +1,4 @@
-import { getCouponList, getCouponClassify, addCoupon } from "../api/coupon"
+import { getCouponList, getCouponClassify, addCoupon } from "@/api"
 
 export default {
   namespace: 'coupon',

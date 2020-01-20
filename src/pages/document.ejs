@@ -5,11 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>加载中...</title>
+  <% if (context.env === "production") {%>
   <script src="https://unpkg.com/react@16.12.0/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.bootcss.com/react-redux/7.1.1/react-redux.min.js"></script>
   <script src="https://cdn.bootcss.com/react-router/5.1.2/react-router.min.js"></script>
+  <% } else { %>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.bootcss.com/react-redux/7.1.1/react-redux.js"></script>
+  <script src="https://cdn.bootcss.com/react-router/5.1.2/react-router.min.js"></script>
+  <% } %>
   <style>
     div,
     p,
@@ -61,7 +68,7 @@
 </head>
 
 <body>
-
+  
   <div id="root"></div>
 
 </body>

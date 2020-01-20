@@ -1,28 +1,9 @@
-const webpackProdConfig = require('../build/prod.config')
+import routes from '../config/routes.config'
+
+const CompressionPlugin = require('compression-webpack-plugin')
 
 export default {
-  routes: [
-    {
-      path: '/login',
-      component: './Login/Login'
-    },
-    {
-    path: '/',
-    component: './App', // 相对于 page 目录的相对路径
-    routes: [
-      {
-        path: '/',
-        component: './Index'
-      },
-      {
-        path: '/coupon',
-        routes: [
-          { path: '/coupon/list', component: './coupon/List' },
-          { path: '/coupon/add', component: './coupon/Add' },
-        ]
-      }
-    ]
-  } ],
+  routes: routes,
   plugins: [
     [ 'umi-plugin-react', {
       antd: true,
@@ -38,5 +19,14 @@ export default {
     "react-router": "ReactRouter",
     "react-redux": "ReactRedux"
   },
-  chainWebpack: ['master', 'test'].includes(process.env.UMI_ENV) ? webpackProdConfig : undefined
+  treeShaking: true,
+  chainWebpack: (config, { webpack }) => {
+    config
+      .plugin('compression-webpack')
+      .use(CompressionPlugin, [ {
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10,
+        deleteOriginalAssets: false
+      } ])
+  }
 };

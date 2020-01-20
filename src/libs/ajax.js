@@ -5,6 +5,8 @@
  */
 
 import axios from 'axios'
+import { message as $Message } from 'antd'
+import {getUserInfo} from '@/utils'
 
 class Ajax {
   constructor() {
@@ -12,9 +14,12 @@ class Ajax {
   }
 
   getInsideConfig() {
+    const userInfo = getUserInfo()
     const config = {
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        Uid: userInfo.Uid,
+        Token: userInfo.Token 
       }
     }
     return config
@@ -38,11 +43,13 @@ class Ajax {
       this.destroy(url)
       const {code, message, data} = res.data
       if (code !== 0) {
+        $Message.error(message)
         return Promise.reject(message)
       }
       return Promise.resolve(data)
     }, error => {
       this.destroy(url)
+      $Message.error(error)
       return Promise.reject(error)
     })
   }
