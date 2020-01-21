@@ -20,6 +20,11 @@ export default {
     "react-redux": "ReactRedux"
   },
   treeShaking: true,
+  define: {
+    API_HOST: process.env.UMI_ENV === 'master'
+      ? 'https://api.0351zhuangxiu.com/tour'
+      : 'https://api.0351zhuangxiu.com/tour'
+  },
   chainWebpack: (config, { webpack }) => {
     config
       .plugin('compression-webpack')
@@ -29,4 +34,4 @@ export default {
         deleteOriginalAssets: false
       } ])
   }
-};
+}

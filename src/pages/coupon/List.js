@@ -1,4 +1,3 @@
-import AuthLayout from '@/pages/Layout/AuthLayout'
 import { Table, Select, Button, message } from "antd"
 import { connect } from 'dva'
 

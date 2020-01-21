@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'umi/link'
-import { Menu, Icon } from 'antd'
+import { Menu, Icon, Layout } from 'antd'
+import { systemName } from '../../../config/system.config'
 
 const MenuItem = Menu.Item
 const SubMenu = Menu.SubMenu
+const { Sider } = Layout
 
 class MenuLayout extends React.Component {
   constructor (props) {
@@ -16,14 +18,19 @@ class MenuLayout extends React.Component {
 
   render () {
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={[ this.props.defaultSelectedKeys ]}>
-        {this.props.routes.slice(0, -1).map(route => this.resolveMenu(route))}
-      </Menu>
+      <Sider width={256} style={{ minHeight: '100vh' }}>
+        <div style={{ height: '32px', color: '#fff', textAlign: 'center', margin: '16px' }}>
+          {systemName}
+        </div>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={[ this.props.defaultSelectedKeys ]}>
+          {this.props.routes.slice(0, -1).filter(item => !item.meta || !item.meta.hidden).map(route => this.resolveMenu(route))}
+        </Menu>
+      </Sider>
     )
   }
 
   resolveMenu (menu) {
-    if (!Array.isArray(menu.routes) || menu.routes.length === 0) {
+    if (!Array.isArray(menu.routes)) {
       return (
         <MenuItem key={menu.path}>
           <Link to={menu.path}>

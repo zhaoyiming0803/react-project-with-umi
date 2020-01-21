@@ -1,15 +1,15 @@
 export default [
   {
     path: '/login',
-    component: './Login/Login'
+    component: 'login/Login'
   },
   {
     path: '/',
-    component: './App', // 相对于 page 目录的相对路径
+    component: 'App', // 相对于 page 目录的相对路径
     routes: [
       {
         path: '/',
-        component: './Index',
+        component: 'Index',
         meta: {
           title: '首页',
           access: 'dashboard'
@@ -23,14 +23,15 @@ export default [
         routes: [
           {
             path: 'list',
-            component: './coupon/List',
+            component: 'coupon/List',
             meta: {
-              title: '优惠券列表'
+              title: '优惠券列表',
+              access: 'business-group-mgr'
             },
             routes: [
               {
                 path: 'test',
-                component: './coupon/List',
+                component: 'coupon/List',
                 meta: {
                   title: '优惠券测试',
                   access: 'partner'
@@ -40,9 +41,10 @@ export default [
           },
           {
             path: 'add',
-            component: './coupon/Add',
+            component: 'coupon/Add',
             meta: {
-              title: '添加优惠券'
+              title: '添加优惠券',
+              access: 'programme-management'
             }
           },
         ]
@@ -55,17 +57,19 @@ export default [
         routes: [
           {
             path: 'list',
-            component: './coupon/List',
+            component: 'coupon/List',
             meta: {
               title: '优惠券列表',
+              access: 'wechat-group-info',
               hidden: true
             }
           },
           {
             path: 'add',
-            component: './coupon/Add',
+            component: 'coupon/Add',
             meta: {
-              title: '添加优惠券'
+              title: '添加优惠券',
+              access: 'wechat-group-info'
             }
           },
         ]
@@ -78,19 +82,19 @@ export default [
         routes: [
           {
             path: 'list',
-            component: './coupon/List',
+            component: 'coupon/List',
             meta: {
               title: '优惠券列表',
-              hidden: false,
-              access: 'admin'
+              access: 'distribution-haha'
             }
           },
           {
             path: 'add',
-            component: './coupon/Add',
+            component: 'coupon/Add',
             meta: {
               title: '添加优惠券',
-              hidden: true
+              hidden: true,
+              access: 'grouper-mgr'
             }
           },
         ]
