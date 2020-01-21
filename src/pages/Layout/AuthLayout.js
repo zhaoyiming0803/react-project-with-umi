@@ -3,6 +3,7 @@ import { message, Spin } from 'antd'
 import { connect } from 'dva'
 import routes from '../../../config/routes.config'
 import { getUserInfo } from '@/utils'
+import { router } from 'umi'
 
 const namespace = 'auth'
 const mapStateToProps = state => ({
@@ -19,7 +20,7 @@ class AuthLayout extends React.Component {
   validateIdetify () {
     const { Uid, Token } = getUserInfo()
     if (!Uid || !Token) {
-      return this.props.history.replace('/login')
+      return router.replace('/login')
     }
     this.props.dispatch({
       type: `${ namespace }/getUserInfo`,

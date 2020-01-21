@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Input, Icon, Button } from 'antd'
 import { connect } from 'dva'
 import styles from './Login.less'
+import { router } from 'umi'
 
 const FormItem = Form.Item
 const namespace = 'auth'
@@ -27,7 +28,7 @@ class LoginForm extends React.Component {
           accountType: this.state.accountType
         }
       })
-      this.props.history.replace('/')
+      router.replace('/')
     })
   }
 
@@ -59,7 +60,7 @@ class LoginForm extends React.Component {
               )}
             </FormItem>
             <FormItem>
-                <Button type="primary" block htmlType="submit">登录</Button>
+              <Button type="primary" block htmlType="submit">登录</Button>
             </FormItem>
           </Form>
         </div>

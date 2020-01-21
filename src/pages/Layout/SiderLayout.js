@@ -23,7 +23,7 @@ class MenuLayout extends React.Component {
           {systemName}
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={[ this.props.defaultSelectedKeys ]}>
-          {this.props.routes.slice(0, -1).filter(item => !item.meta || !item.meta.hidden).map(route => this.resolveMenu(route))}
+          {filterRoute(this.props.routes).map(route => this.resolveMenu(route))}
         </Menu>
       </Sider>
     )
@@ -46,10 +46,14 @@ class MenuLayout extends React.Component {
         key={menu.path}
         title={<span><Icon type="dashboard" /><span>{menu.meta && menu.meta.title}</span></span>}
       >
-        {menu.routes.filter(item => !item.meta || !item.meta.hidden).slice(0, -1).map(subMenu => this.resolveMenu(subMenu))}
+        {filterRoute(menu.routes).map(subMenu => this.resolveMenu(subMenu))}
       </SubMenu>
     )
   }
+}
+
+function filterRoute (routes) {
+  return routes.filter(route => route.path && (!route.meta || !route.meta.hidden))
 }
 
 export default MenuLayout

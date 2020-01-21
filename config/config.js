@@ -3,6 +3,7 @@ import routes from '../config/routes.config'
 const CompressionPlugin = require('compression-webpack-plugin')
 
 export default {
+  history: 'hash',
   routes: routes,
   plugins: [
     [ 'umi-plugin-react', {
