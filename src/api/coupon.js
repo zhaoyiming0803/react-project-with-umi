@@ -19,7 +19,6 @@ export const getCouponClassify = () => {
 }
 
 export const addCoupon = (data) => {
-  console.log('coupon data: ', data)
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
