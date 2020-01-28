@@ -13,23 +13,7 @@ class LoginForm extends React.Component {
     this.state = {
       accountType: 'partner'
     }
-  }
-
-  onSubmit (e) {
-    e.preventDefault()
-    this.props.form.validateFieldsAndScroll(async (err, formData) => {
-      if (err) {
-        return console.log(err)
-      }
-      await this.props.dispatch({
-        type: `${ namespace }/login`,
-        payload: {
-          ...formData,
-          accountType: this.state.accountType
-        }
-      })
-      router.replace('/')
-    })
+    this.hasLogin()
   }
 
   render () {
@@ -53,7 +37,7 @@ class LoginForm extends React.Component {
               {getFieldDecorator('password', {
                 rules: [ { required: true, message: 'Please input your password!' } ],
               })(
-                <Input
+                <Input.Password
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="password"
                 />,
@@ -66,6 +50,34 @@ class LoginForm extends React.Component {
         </div>
       </div>
     )
+  }
+
+  hasLogin () {
+    try {
+      const {Uid, Token} = JSON.parse(window.localStorage.userInfo)
+      if (Uid && Token) {
+        router.replace('/')
+      }
+    } catch (e) {
+      window.localStorage.removeItem('userInfo')
+    }
+  }
+
+  onSubmit (e) {
+    e.preventDefault()
+    this.props.form.validateFieldsAndScroll(async (err, formData) => {
+      if (err) {
+        return console.log(err)
+      }
+      await this.props.dispatch({
+        type: `${ namespace }/login`,
+        payload: {
+          ...formData,
+          accountType: this.state.accountType
+        }
+      })
+      router.replace('/')
+    })
   }
 }
 
